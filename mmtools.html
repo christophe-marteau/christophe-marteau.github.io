@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HPC Meta Manager and other tools &mdash; hpcManager 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Standalone Module Managers" href="smmtools.html" />
+    <link rel="prev" title="Welcome to hpcManager’s documentation !" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            hpcManager
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HPC Meta Manager and other tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hpcmanager">HpcManager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#filters">Filters :</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#regex-filter">Regex filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#not-filter">Not filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inferior-or-superior-filter">Inferior or superior filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#search-filter">Search filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#count-filter">Count filter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples :</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Sub-commands">Sub-commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hpcmesomanager">HpcMesoManager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Sub-commands">Sub-commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-pending-attributions">list-pending-attributions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-ips">list-ips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hpcpasswordmanager">HpcPasswordManager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Sub-commands">Sub-commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lock-and-expire">lock-and-expire</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lock">lock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renew-and-unlock">renew-and-unlock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unlock">unlock</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="smmtools.html">Standalone Module Managers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hpc.html">HPC Modules Reference API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hpcManager</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">HPC Meta Manager and other tools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mmtools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hpc-meta-manager-and-other-tools">
+<h1>HPC Meta Manager and other tools<a class="headerlink" href="#hpc-meta-manager-and-other-tools" title="Permalink to this heading"></a></h1>
+<section id="hpcmanager">
+<h2>HpcManager<a class="headerlink" href="#hpcmanager" title="Permalink to this heading"></a></h2>
+<p>HpcManager is a tools that can manage users and groups from severals modules. It is useful to
+merge, join, filter and displays data from modules in csv format.</p>
+<section id="filters">
+<h3>Filters :<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h3>
+<p>Filters can be combined with logicals expressions ‘and’ and ‘or’. These expressions are evaluated
+according to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">reverse polish notation syntax</a>.</p>
+<p>Filters can be used to compare value of different modules with this syntax <cite>&lt;module&gt;_&lt;attribute&gt;&lt;operator&gt;[&lt;module&gt;_&lt;attribute&gt;]</cite>.
+For example, to search in ‘ldapds’ module users that have gecos attribute value different from attribute “” in gramc Meso :</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;ldapds_uid=^.+$&#39;</span> <span class="s1">&#39;gramc_category=^mesonet$&#39;</span> <span class="s1">&#39;ldapds_gecos!^[gramc_idindividu]$&#39;</span> <span class="s1">&#39;and&#39;</span> <span class="s1">&#39;and&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>At the moment, there are 6 filters type available :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>regex (‘=’ symbol)</p></li>
+<li><p>not (‘!’ symbol)</p></li>
+<li><p>inferior (‘&lt;’ symbol)</p></li>
+<li><p>superior (‘&gt;’ symbol)</p></li>
+<li><p>search (‘&#64;’ symbol)</p></li>
+<li><p>count (‘#’ symbol)</p></li>
+</ul>
+</div></blockquote>
+<section id="regex-filter">
+<h4>Regex filter<a class="headerlink" href="#regex-filter" title="Permalink to this heading"></a></h4>
+<p>This filter does a regex match on the attribute. It is case insensitive and work on substring by
+default unless providing regex start ‘^’ or end ‘$’ character.</p>
+<p>Example :</p>
+<ul>
+<li><p>Searching for case unsensitive string matching ‘Doe’ on attribute ‘nom’ in module ‘gramc’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;gramc_nom=Doe&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Searching for case unsensitive string exact matching ‘Doe’ on attribute ‘nom’ in module ‘gramc’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;gramc_nom=^Doe$&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="not-filter">
+<h4>Not filter<a class="headerlink" href="#not-filter" title="Permalink to this heading"></a></h4>
+<p>This filter does a negation on a regex match on the attribute. It is case insensitive and work on substring by
+default unless providing regex start ‘^’ or end ‘$’ character.</p>
+<p>Example :</p>
+<ul>
+<li><p>Searching for case unsensitive string not matching ‘Doe’ on attribute ‘nom’ in module ‘gramc’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;gramc_nom!Doe&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Searching for case unsensitive string not exact matching ‘Doe’ on attribute ‘nom’ in module ‘gramc’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;gramc_nom!^Doe$&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="inferior-or-superior-filter">
+<h4>Inferior or superior filter<a class="headerlink" href="#inferior-or-superior-filter" title="Permalink to this heading"></a></h4>
+<p>This filter does a strict inferior or superior case sensitive comparison on the value of the attribute. It tries first to convert
+attribute in int or float. If its fails, it does a lexical comparison according to
+<a class="reference external" href="https://docs.python.org/3/reference/expressions.html#comparisons">python lexical comparison algorithlm</a></p>
+<p>Example :</p>
+<ul>
+<li><p>Searching for gramc active session attribution strictly superior than 5000 :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;gramc_aatribution&gt;5000&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="search-filter">
+<h4>Search filter<a class="headerlink" href="#search-filter" title="Permalink to this heading"></a></h4>
+<p>This filter search in a list, a dictionary or a GenericObjects object.</p>
+<ul class="simple">
+<li><p>If targeted attribute is a list, then the syntax is ‘module_attribute&#64;key&lt;value’. It, then, performs a search  and looks up for exact item ‘key’ in list.</p></li>
+<li><p>If targeted attribute is a dictionary, then the syntax is ‘module_attribute&#64;key&lt;value’. It, then, performs a search and looks up for exact key ‘key’ in dict having ‘value’ as value. The comparison for the value is done with a regex macth as in regex filter. Special character ‘*’ can be used instead value and means that looks up for key in dictionary is done whathever its value.</p></li>
+<li><p>If targeted attribute is a GenericObjects, then the syntax is ‘module_attribute&#64;key&lt;value’. It, then, performs a search and looks up for exact attribute ‘key’ in object having ‘value’ as value. The comparison for the value is done with a regex match as in regex filter. Special character ‘*’ can be used instead value and means that looks up for key in dictionary is done whathever its value.</p></li>
+</ul>
+<p>Example :</p>
+<ul>
+<li><p>Searching for value in attribute ‘projets’ (a list) in module ‘gramc’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;gramc_projets@m23099&lt;&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Searching in ‘history’ attribute ‘logs’ a message containing string ‘creation’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcHistoryManager</span><span class="o">.</span><span class="n">py</span> <span class="n">user</span> <span class="nb">list</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;logs@message&lt;creation&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Searching in ‘history’ attribute ‘logs’ a message containing exact string ‘creation’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcHistoryManager</span><span class="o">.</span><span class="n">py</span> <span class="n">user</span> <span class="nb">list</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;logs@message&lt;^creation$&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Searching in ‘history’ attribute ‘logs’ whathever key containing ‘creation’ :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcHistoryManager</span><span class="o">.</span><span class="n">py</span> <span class="n">user</span> <span class="nb">list</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;logs@*&lt;^creation$&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="count-filter">
+<h4>Count filter<a class="headerlink" href="#count-filter" title="Permalink to this heading"></a></h4>
+<p>This filter count occurences of an item in a list, of a key in dictionary or of an object in a GenericObjects object list.</p>
+<p>Example :</p>
+<ul>
+<li><p>Searching in history logs having stricly more than 10 entries :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcHistoryManager</span><span class="o">.</span><span class="n">py</span> <span class="n">user</span> <span class="nb">list</span> <span class="o">--</span><span class="nb">filter</span> <span class="s1">&#39;logs#&gt;10&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h3>Examples :<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>List mesonet user attribute unix login, slurm user, ldap uid and gramc utilisateur for gramc meso user named John Doe :</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="o">--</span><span class="n">attribute</span> <span class="n">unix_login</span> <span class="n">slurm_user</span> <span class="n">ldapds_uid</span> <span class="o">--</span><span class="nb">filter</span> <span class="n">gramc_nom</span><span class="o">=</span><span class="s1">&#39;^Doe$&#39;</span> <span class="n">gramc_prenom</span><span class="o">=</span><span class="s1">&#39;^John$&#39;</span> <span class="s1">&#39;and&#39;</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unix_login</span><span class="p">,</span><span class="n">slurm_user</span><span class="p">,</span><span class="n">ldapds_uid</span><span class="p">,</span><span class="n">gramc_utilisateur</span>
+<span class="n">jdoe</span><span class="p">,</span><span class="n">jdoe</span><span class="p">,</span><span class="n">jdoe</span><span class="p">,</span><span class="n">john</span><span class="o">.</span><span class="n">doe</span><span class="nd">@example</span><span class="o">.</span><span class="n">net</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+<p><p>Hpc user and group manager</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">{</span><span class="nb">list</span><span class="p">,</span><span class="n">create</span><span class="p">,</span><span class="n">delete</span><span class="p">,</span><span class="n">update</span><span class="p">}</span> <span class="o">...</span>
+</pre></div>
+</div>
+<section id="Positional Arguments">
+<h4>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this heading"></a></h4>
+<dl class="option-list">
+<dt><kbd>actions</kbd></dt>
+<dd><p>Possible choices: list, create, delete, update</p>
+</dd>
+</dl>
+</section>
+<section id="Named Arguments">
+<h4>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this heading"></a></h4>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+</dl>
+</section>
+<section id="Sub-commands">
+<h4>Sub-commands<a class="headerlink" href="#Sub-commands" title="Permalink to this heading"></a></h4>
+<section id="list">
+<h5>list<a class="headerlink" href="#list" title="Permalink to this heading"></a></h5>
+<p>List objects (all local cluster objects by default),</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">output</span> <span class="p">[</span><span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span><span class="p">]]</span>
+                   <span class="p">[</span><span class="o">--</span><span class="n">delimiter</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">delimiter</span><span class="o">&gt;</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">header</span><span class="p">]</span>
+                   <span class="p">[</span><span class="o">--</span><span class="n">generate</span><span class="o">-</span><span class="n">missing</span><span class="p">]</span>
+                   <span class="p">{</span><span class="n">group</span><span class="p">,</span><span class="n">user</span><span class="p">}</span> <span class="o">...</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat1">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat1" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>objects</kbd></dt>
+<dd><p>Possible choices: group, user</p>
+</dd>
+</dl>
+</section>
+<section id="Named Arguments_repeat1">
+<h6>Named Arguments<a class="headerlink" href="#Named Arguments_repeat1" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--output</kbd></dt>
+<dd><p>Output file (stdout by default)</p>
+</dd>
+<dt><kbd>--delimiter</kbd></dt>
+<dd><p>Output field delimiter (‘,’ by default)</p>
+</dd>
+<dt><kbd>--no-header</kbd></dt>
+<dd><p>Remove headers from output</p>
+</dd>
+<dt><kbd>--generate-missing</kbd></dt>
+<dd><p>Generate missing modules data if module is loaded and module’s attributes have generators</p>
+</dd>
+</dl>
+</section>
+<section id="Sub-commands_repeat1">
+<h6>Sub-commands<a class="headerlink" href="#Sub-commands_repeat1" title="Permalink to this heading"></a></h6>
+<section id="group">
+<h6 aria-level="7">group<a class="headerlink" href="#group" title="Permalink to this heading"></a></h6>
+<p>Manage hpc groups</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">group</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span>
+                         <span class="p">[</span><span class="o">--</span><span class="n">attribute</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">fields</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">fields</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]]]</span>
+                         <span class="p">[</span><span class="o">--</span><span class="nb">filter</span> <span class="p">[</span><span class="o">&lt;</span><span class="nb">filter</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="nb">filter</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]]]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat2">
+<h6 aria-level="8">Named Arguments<a class="headerlink" href="#Named Arguments_repeat2" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--attribute</kbd></dt>
+<dd><p>Possible choices: gramc_projet, gramc_idprojet, gramc_mstate, gramc_mtype, gramc_apstate, gramc_aattribution, gramc_avstate, gramc_asession, gramc_aversion, gramc_amail, gramc_aquota, gramc_astore, gramc_aasked, gramc_aconsumption, gramc_alabo, gramc_aidlabo, gramc_ametadonnees, gramc_aresume, gramc_athematic, gramc_aidthematic, gramc_atitre, gramc_astart, gramc_aend, gramc_alimit, gramc_lpstate, gramc_lattribution, gramc_lvstate, gramc_lsession, gramc_lversion, gramc_lmail, gramc_lquota, gramc_lstore, gramc_lasked, gramc_lconsumption, gramc_llabo, gramc_lidlabo, gramc_lmetadonnees, gramc_lresume, gramc_lthematic, gramc_lidthematic, gramc_ltitre, gramc_lstart, gramc_lend, gramc_llimit, gramc_aclusters, gramc_lclusters, gramc_category, gramc_generated, history_group, history_logs, history_musers, history_category, history_generated, ldapds_cn, ldapds_gidnumber, ldapds_musers, ldapds_dn, ldapds_category, ldapds_generated, unix_group, unix_password, unix_gid, unix_musers, unix_category, unix_generated, slurm_account, slurm_descr, slurm_org, slurm_category, slurm_generated, ssh_group, ssh_musers, ssh_category, ssh_generated, gramc_all, gramc_std, gramc_ext, history_all, history_std, history_ext, ldapds_all, ldapds_std, ldapds_ext, unix_all, unix_std, unix_ext, slurm_all, slurm_std, slurm_ext, ssh_all, ssh_std, ssh_ext</p>
+<p>Display attribute info (see ‘Attribute field description’). You can use ‘&lt;module&gt;_all’, ‘&lt;module&gt;_std’ or ‘&lt;module&gt;_ext’ to display all, standard or extended attributes for this module.</p>
+</dd>
+<dt><kbd>--filter</kbd></dt>
+<dd><p>Filter an attribute value with a regexp ‘module-name_attribute-name[!|=]regex’ or with a key in a list, a dict or list dict with ‘&lt;module_name&gt;_&lt;attribute_name&gt;&#64;[key|*]&lt;regex. You can use * in key to specify all keys and you can use [module-name_attribute-name] in regex if you want to use the value of an other attribute in the regex. Filter example : ‘unix_login=^toto.*’, gramc_projets=p99001&lt;^None$’, ‘gramc_login=^gramc_[unix_login]$’ or gramc_projets=*&lt;^[unix_login]$’</p>
+</dd>
+</dl>
+</section>
+<p>Attribute field description :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>gramc :</p>
+<ul>
+<li><p>projet        : Gramc project name</p></li>
+<li><p>idprojet      : Gramc project ID</p></li>
+<li><p>mstate        : Gramc project meta state string</p></li>
+<li><p>mtype         : Gramc project meta type string</p></li>
+<li><p>apstate       : Gramc active project state string</p></li>
+<li><p>aattribution  : Gramc active project cpu hour attribution</p></li>
+<li><p>avstate       : Gramc active project version state string</p></li>
+<li><p>asession      : Gramc active session ID (Gramc only)</p></li>
+<li><p>aversion      : Gramc active project version ID</p></li>
+<li><p>amail         : Gramc active project Principal Investigator (PI) email</p></li>
+<li><p>aquota        : Gramc active project cpu hour quota (Gramc only)</p></li>
+<li><p>astore        : Gramc active project store space asked  (Gramc only)</p></li>
+<li><p>aasked        : Gramc active project cpu hour asked (Meso only)</p></li>
+<li><p>aconsumption  : Gramc active project cpu hour consumption (Meso only)</p></li>
+<li><p>alabo         : Gramc active project laboratory</p></li>
+<li><p>aidlabo       : Gramc active project laboratory ID (Meso only)</p></li>
+<li><p>ametadonnees  : Gramc active project metadata (Gramc only)</p></li>
+<li><p>aresume       : Gramc active project summary</p></li>
+<li><p>athematic     : Gramc active project or active laboraory thematic</p></li>
+<li><p>aidthematic   : Gramc active project or active laboraory thematic ID (Meso only)</p></li>
+<li><p>atitre        : Gramc active project title</p></li>
+<li><p>astart        : Gramc active project start date (Meso only)</p></li>
+<li><p>aend          : Gramc active project end date (Meso only)</p></li>
+<li><p>alimit        : Gramc active project limit date (Meso only)</p></li>
+<li><p>lpstate       : Gramc last project state string</p></li>
+<li><p>lattribution  : Gramc last project cpu hour attribution</p></li>
+<li><p>lvstate       : Gramc last project version state string</p></li>
+<li><p>lsession      : Gramc last session ID (Gramc only)</p></li>
+<li><p>lversion      : Gramc last project version ID</p></li>
+<li><p>lmail         : Gramc last project Principal Investigator (PI) email</p></li>
+<li><p>lquota        : Gramc last project cpu hour quota (Gramc only)</p></li>
+<li><p>lstore        : Gramc last project store space asked (Gramc only)</p></li>
+<li><p>lasked        : Gramc last project cpu hour asked (Meso only)</p></li>
+<li><p>lconsumption  : Gramc last project cpu hour consumption (Meso only)</p></li>
+<li><p>llabo         : Gramc project laboratory</p></li>
+<li><p>lidlabo       : Gramc last project laboratory ID (Meso only)</p></li>
+<li><p>lmetadonnees  : Gramc last project metadata (Gramc only)</p></li>
+<li><p>lresume       : Gramc last project summary</p></li>
+<li><p>lthematic     : Gramc last project or laboratory thematic</p></li>
+<li><p>lidthematic   : Gramc last project or last laboratory thematic ID (Meso only)</p></li>
+<li><p>ltitre        : Gramc last project title</p></li>
+<li><p>lstart        : Gramc last project start date (Meso only)</p></li>
+<li><p>lend          : Gramc last project end date (Meso only)</p></li>
+<li><p>llimit        : Gramc last project limit date (Meso only)</p></li>
+<li><p>aclusters     : Gramc active project list of cluster (extended)</p></li>
+<li><p>lclusters     : Gramc last project list of cluster (extended)</p></li>
+<li><p>category      : Project category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this project a generated project (extended)</p></li>
+</ul>
+</li>
+<li><p>history :</p>
+<ul>
+<li><p>group         : History group name</p></li>
+<li><p>logs          : List of group history logs (Object list)
+* ts             - History log timestamp
+* action         - History log action
+* user           - History log user
+* tags           - History log tags
+* message        - History log message
+* generated      - Is this group a generated group (extended)</p></li>
+<li><p>musers        : List of user names members of the group (extended)</p></li>
+<li><p>category      : Group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this group a generated group (extended)</p></li>
+</ul>
+</li>
+<li><p>ldapds :</p>
+<ul>
+<li><p>cn            : Ldap group name</p></li>
+<li><p>gidnumber     : Ldap group gidNumber</p></li>
+<li><p>musers        : List of user dn of users who are members of the group</p></li>
+<li><p>dn            : Ldap group dn (extended)</p></li>
+<li><p>category      : Group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this group a generated group (extended)</p></li>
+</ul>
+</li>
+<li><p>unix :</p>
+<ul>
+<li><p>group         : Unix group name</p></li>
+<li><p>password      : Unix group password</p></li>
+<li><p>gid           : Unix group gid</p></li>
+<li><p>musers        : List of user names of users who are members of the group</p></li>
+<li><p>category      : Group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this group a generated group (extended)</p></li>
+</ul>
+</li>
+<li><p>slurm :</p>
+<ul>
+<li><p>account       : Slurm account name</p></li>
+<li><p>descr         : Slurm account description</p></li>
+<li><p>org           : Slurm account organization</p></li>
+<li><p>category      : Slurm account category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this account a generated account (extended)</p></li>
+</ul>
+</li>
+<li><p>ssh :</p>
+<ul>
+<li><p>group         : Ssh group name</p></li>
+<li><p>musers        : List of user names members of the group (extended)</p></li>
+<li><p>category      : Group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this group a generated group (extended)</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>Predefined filters :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>AllGroups                     : List all groups (filters nothing, only set default attributes)</p></li>
+<li><p>AllMesoGroups                 : List all groups (filters nothing, only set default attributes)</p></li>
+<li><p>HpcGroups                     : List valid hpc groups (which have unix and slurm entries)</p></li>
+<li><p>SessionOldGroups              : List groups in old session to delete</p></li>
+<li><p>SessionBKeepedGroups          : List groups in old session to keep for B session</p></li>
+<li><p>NewGroups                     : List groups to create in current session</p></li>
+<li><p>NewMesoGroups                 : List groups to create in current session</p></li>
+<li><p>QuotaUpdateGroups             : List groups needed quota update according to attribution</p></li>
+<li><p>SessionNewGroups              : List groups to create for new session</p></li>
+<li><p>SessionReNewGroups            : List groups to renew for new session</p></li>
+<li><p>PreSessionNewGroups           : List groups to create for new session</p></li>
+<li><p>PreSessionReNewGroups         : List groups to renew for new session</p></li>
+<li><p>SessionGroups                 : List groups from current gramc sessions</p></li>
+<li><p>PreSessionGroups              : List groups from current gramc sessions</p></li>
+<li><p>SanityCheckOrphans            : List recherche or test groups with no unix_login or no slurm_user</p></li>
+<li><p>SanityMesoCheckOrphans        : List mesonet or test groups with no unix_login or no slurm_user</p></li>
+<li><p>CallistoGroups                : List callisto groups</p></li>
+<li><p>SanityCheckQuotas             : List groups with more quota than attribution</p></li>
+</ul>
+</div></blockquote>
+<p>Examples :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>List groups from ‘entreprise’ category :</p></li>
+</ul>
+</div></blockquote>
+<p>hpcManager.py list group –attribute unix_group –filter unix_category=’entreprise’</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>List research groups to delete :</p></li>
+</ul>
+</div></blockquote>
+<p>hpcManager.py list group –attribute unix_group –filter predefined=OldGroups</p>
+</section>
+<section id="user">
+<h6 aria-level="7">user<a class="headerlink" href="#user" title="Permalink to this heading"></a></h6>
+<p>Manage hpc users</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span> <span class="n">user</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span>
+                        <span class="p">[</span><span class="o">--</span><span class="n">attribute</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">fields</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">fields</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]]]</span>
+                        <span class="p">[</span><span class="o">--</span><span class="nb">filter</span> <span class="p">[</span><span class="o">&lt;</span><span class="nb">filter</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="nb">filter</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]]]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat3">
+<h6 aria-level="8">Named Arguments<a class="headerlink" href="#Named Arguments_repeat3" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--attribute</kbd></dt>
+<dd><p>Possible choices: gramc_loginname, gramc_utilisateur, gramc_nom, gramc_prenom, gramc_idindividu, gramc_projet, gramc_aversion, gramc_lversion, gramc_gloginname, gramc_aloginname, gramc_lloginname, gramc_adeleted, gramc_ldeleted, gramc_alogin, gramc_aclogin, gramc_llogin, gramc_lclogin, gramc_pmtype, gramc_apvstate, gramc_lpvstate, gramc_auserid, gramc_luserid, gramc_aclusters, gramc_lclusters, gramc_mprojets, gramc_pmstate, gramc_api, gramc_lpi, gramc_category, gramc_apstate, gramc_lpstate, gramc_apsession, gramc_lpsession, gramc_apversion, gramc_lpversion, gramc_lsshkeyid, gramc_lsshpublickey, gramc_lsshkeyname, gramc_lsshkeydeployed, gramc_lsshkeyrevoked, gramc_asshkeyid, gramc_asshpublickey, gramc_asshkeyname, gramc_asshkeydeployed, gramc_asshkeyrevoked, gramc_generated, gramc_password, gramc_cpassword, history_login, history_pgroup, history_logs, history_category, history_generated, ldapds_uid, ldapds_cn, ldapds_displayname, ldapds_uidnumber, ldapds_gidnumber, ldapds_homedirectory, ldapds_mail, ldapds_loginshell, ldapds_gecos, ldapds_pgroup, ldapds_dn, ldapds_mgroups, ldapds_category, ldapds_generated, ldapds_locked, unix_login, unix_password, unix_uid, unix_gid, unix_comment, unix_home, unix_shell, unix_pgroup, unix_mgroups, unix_category, unix_idindividu, unix_nom, unix_prenom, unix_mail, unix_clearpassword, unix_cryptedpassword, unix_generated, unix_locked, slurm_user, slurm_account, slurm_admin, slurm_category, slurm_generated, ssh_login, ssh_pgroup, ssh_authpubkeysuser, ssh_authpubkeysinternal, ssh_authpubkeyspi, ssh_authpubkeysadmin, ssh_internalpubkey, ssh_internalprivkey, ssh_folder, ssh_category, ssh_generated, gramc_all, gramc_std, gramc_ext, history_all, history_std, history_ext, ldapds_all, ldapds_std, ldapds_ext, unix_all, unix_std, unix_ext, slurm_all, slurm_std, slurm_ext, ssh_all, ssh_std, ssh_ext</p>
+<p>Display attribute info (see ‘Attribute field description’). You can use ‘&lt;module&gt;_all’, ‘&lt;module&gt;_std’ or ‘&lt;module&gt;_ext’ to display all, standard or extended attributes for this module.</p>
+</dd>
+<dt><kbd>--filter</kbd></dt>
+<dd><p>Filter an attribute value with a regexp ‘module-name_attribute-name[!|=]regex’ or with a key in a list, a dict or list dict with ‘&lt;module_name&gt;_&lt;attribute_name&gt;&#64;[key|*]&lt;regex. You can use * in key to specify all keys and you can use [module-name_attribute-name] in regex if you want to use the value of an other attribute in the regex. Filter example : ‘unix_login=^toto.*’, gramc_projets=p99001&lt;^None$’, ‘gramc_login=^gramc_[unix_login]$’ or gramc_projets=*&lt;^[unix_login]$’</p>
+</dd>
+</dl>
+</section>
+<p>Attribute field description :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>gramc :</p>
+<ul>
+<li><p>loginname     : Unix login in gramc or generated login if not set in gramc</p></li>
+<li><p>utilisateur   : Gramc user email</p></li>
+<li><p>nom           : Gramc user’s lastname</p></li>
+<li><p>prenom        : Gramc user’s firstname</p></li>
+<li><p>idindividu    : Gramc project individu ID</p></li>
+<li><p>projet        : Gramc project</p></li>
+<li><p>aversion      : Gramc active project version id in gramc</p></li>
+<li><p>lversion      : Gramc last project version id in gramc (for this user)</p></li>
+<li><p>gloginname    : Gramc loginname in gramc</p></li>
+<li><p>aloginname    : Cluster account for active gramc version</p></li>
+<li><p>lloginname    : Cluster account for last gramc version (for this user)</p></li>
+<li><p>adeleted      : Cluster account deletion flag for active gramc version (for this user)</p></li>
+<li><p>ldeleted      : Cluster account deletion flag for last gramc version (for this user)</p></li>
+<li><p>alogin        : Cluster account for active gramc session</p></li>
+<li><p>aclogin       : Callisto account for active gramc session (Gramc only)</p></li>
+<li><p>llogin        : Cluster account for last gramc session</p></li>
+<li><p>lclogin       : Callisto account for last gramc session (Gramc only)</p></li>
+<li><p>pmtype        : Gramc project meta type string</p></li>
+<li><p>apvstate      : Gramc active project version state string</p></li>
+<li><p>lpvstate      : Gramc last project version state string</p></li>
+<li><p>auserid       : Last user resource ID (Meso only)</p></li>
+<li><p>luserid       : Active user resource ID (Meso only)</p></li>
+<li><p>aclusters     : Last user clusters list (Meso only)</p></li>
+<li><p>lclusters     : Active user clusters list (Meso only)</p></li>
+<li><p>mprojets      : Gramc user project’s name member list (extended)</p></li>
+<li><p>pmstate       : Gramc project meta state (extended)</p></li>
+<li><p>api           : Active project’s Principal Investigator (extended)</p></li>
+<li><p>lpi           : Last project’s Principal Investigator (extended)</p></li>
+<li><p>category      : Project category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>apstate       : Gramc active project state string (extended)</p></li>
+<li><p>lpstate       : Gramc last project state string (extended)</p></li>
+<li><p>apsession     : Project active session (extended)</p></li>
+<li><p>lpsession     : Project last session (extended)</p></li>
+<li><p>apversion     : Project active version (extended)</p></li>
+<li><p>lpversion     : Project last version (extended)</p></li>
+<li><p>lsshkeyid     : Last user resource ssh public key ID (Meso only) (extended)</p></li>
+<li><p>lsshpublickey : Last user resource ssh public key string (Meso only) (extended)</p></li>
+<li><p>lsshkeyname   : Last user resource ssh public key name (Meso only) (extended)</p></li>
+<li><p>lsshkeydeployed: Is last user resource ssh public key deployed (Meso only) (extended)</p></li>
+<li><p>lsshkeyrevoked: Is last user resource ssh public key revoked (Meso only) (extended)</p></li>
+<li><p>asshkeyid     : Active user resource ssh public key ID (Meso only) (extended)</p></li>
+<li><p>asshpublickey : Active user resource ssh public key string (Meso only) (extended)</p></li>
+<li><p>asshkeyname   : Active user resource ssh public key name (Meso only) (extended)</p></li>
+<li><p>asshkeydeployed: Is active user resource ssh public key deployed (Meso only) (extended)</p></li>
+<li><p>asshkeyrevoked: Is active user resource ssh public key revoked (Meso only) (extended)</p></li>
+<li><p>generated     : Is this user a generated user (extended)</p></li>
+<li><p>password      : Gramc temporary clear password (only use for update) (Gramc only) (extended)</p></li>
+<li><p>cpassword     : Gramc temporary encrypted password fingerprint (only use for update) (Gramc only) (extended)</p></li>
+</ul>
+</li>
+<li><p>history :</p>
+<ul>
+<li><p>login         : History user login name</p></li>
+<li><p>pgroup        : User history primary group name</p></li>
+<li><p>logs          : List of user history logs (Object list)
+* ts             - History log timestamp
+* action         - History log action
+* user           - History log user
+* tags           - History log tags
+* message        - History log message
+* generated      - Is this group a generated group (extended)</p></li>
+<li><p>category      : User group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this user a generated user (extended)</p></li>
+</ul>
+</li>
+<li><p>ldapds :</p>
+<ul>
+<li><p>uid           : Ldap user id</p></li>
+<li><p>cn            : Ldap user common name</p></li>
+<li><p>displayname   : Ldap user display name</p></li>
+<li><p>uidnumber     : Ldap user uidNumber</p></li>
+<li><p>gidnumber     : Ldap user gidnumber</p></li>
+<li><p>homedirectory : Ldap user home directory</p></li>
+<li><p>mail          : Ldap user email</p></li>
+<li><p>loginshell    : Ldap user login shell</p></li>
+<li><p>gecos         : Ldap user gecos (Gramc idindividu)</p></li>
+<li><p>pgroup        : Ldap user primary group name</p></li>
+<li><p>dn            : Ldap user dn (extended)</p></li>
+<li><p>mgroups       : Ldap user group’s name member list (extended)</p></li>
+<li><p>category      : User group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this user a generated ldap user (extended)</p></li>
+<li><p>locked        : Ldap user locking state (extended)</p></li>
+</ul>
+</li>
+<li><p>unix :</p>
+<ul>
+<li><p>login         : Unix user login name</p></li>
+<li><p>password      : Unix user password</p></li>
+<li><p>uid           : Unix user uid</p></li>
+<li><p>gid           : Unix user gid</p></li>
+<li><p>comment       : Unix user comment</p></li>
+<li><p>home          : Unix user home</p></li>
+<li><p>shell         : Unix user shell</p></li>
+<li><p>pgroup        : Unix user primary group name</p></li>
+<li><p>mgroups       : Unix user group’s name member list (extended)</p></li>
+<li><p>category      : User group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>idindividu    : Gramc user idindividu in comment field (extended)</p></li>
+<li><p>nom           : User family name  in comment field (extended)</p></li>
+<li><p>prenom        : User first name  in comment field (extended)</p></li>
+<li><p>mail          : User email  in comment field (extended)</p></li>
+<li><p>clearpassword : Unix user clear password (only for new users) (extended)</p></li>
+<li><p>cryptedpassword: Unix user encrypted password (only for new users) in shadow file (extended)</p></li>
+<li><p>generated     : Is this user a generated user (extended)</p></li>
+<li><p>locked        : Unix user locking state (extended)</p></li>
+</ul>
+</li>
+<li><p>slurm :</p>
+<ul>
+<li><p>user          : Slurm user name</p></li>
+<li><p>account       : Slurm user’s account name</p></li>
+<li><p>admin         : Slurm administrator user</p></li>
+<li><p>category      : Account category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this user a generated user (extended)</p></li>
+</ul>
+</li>
+<li><p>ssh :</p>
+<ul>
+<li><p>login         : Ssh user login name</p></li>
+<li><p>pgroup        : Ssh user primary group name</p></li>
+<li><p>authpubkeysuser: Ssh authorized public key list for this user</p></li>
+<li><p>authpubkeysinternal: Ssh authorized internal public key list for this user</p></li>
+<li><p>authpubkeyspi : Ssh authorized project inverstigator public key list for this user</p></li>
+<li><p>authpubkeysadmin: Ssh authorized admin public key list for this user</p></li>
+<li><p>internalpubkey: Ssh user internal public key</p></li>
+<li><p>internalprivkey: Ssh user internal private key</p></li>
+<li><p>folder        : Ssh user folder path (extended)</p></li>
+<li><p>category      : Ssh User group category (mesonet, entreprise, test, unknown, socle, admins, interne, logiciel, system) (extended)</p></li>
+<li><p>generated     : Is this user a generated user (extended)</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>Predefined filters :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>AllUsers                      : List all users (filters nothing, only set default attributes)</p></li>
+<li><p>AllMesoUsers                  : List all users (filters nothing, only set default attributes)</p></li>
+<li><p>HpcUsers                      : List valid hpc users (which have unix and slurm entries)</p></li>
+<li><p>LockedUsers                   : List locked hpc users</p></li>
+<li><p>OldUsers                      : List old users in current sessions</p></li>
+<li><p>SessionOldUsers               : List old users in old sessions</p></li>
+<li><p>NewUsers                      : List users from current gramc sessions with no unix login</p></li>
+<li><p>NewMesoUsers                  : List users from current gramc sessions with no unix login</p></li>
+<li><p>NewMesoSshKey                 : List users from current gramc sessions with ssh key not deployed</p></li>
+<li><p>SessionNewUsers               : List users from new gramc session with no unix login</p></li>
+<li><p>PreSessionNewUsers            : List users from new gramc session with no unix login</p></li>
+<li><p>SanityCheckGramcLoginMissing  : List recherche or test users with no gramc_login set in GRAMC</p></li>
+<li><p>SanityCheckOrphans            : List recherche or test users with no unix_login or no slurm_user</p></li>
+<li><p>SanityCheckUnixGecos          : List recherche or test users with unix gecos not formate according to gramc attributes</p></li>
+<li><p>CallistoUsers                 : List callisto users</p></li>
+<li><p>SanityMesoCheckOrphans        : List meso users with no unix_login or no slurm_user</p></li>
+<li><p>SanityMesoCheckGramcId        : List meso users with bad gramc id</p></li>
+<li><p>SanityMesoCheckGramcMail      : List meso users with bad gramc mail</p></li>
+<li><p>SanityMesoCheckGramcSshPubKey : List meso users with bad gramc ssh public key deployed</p></li>
+</ul>
+</div></blockquote>
+<p>Examples :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>List research iser in active project needed to be deleted :</p></li>
+</ul>
+</div></blockquote>
+<p>hpcManager.py list user –attribute unix_login –filter predefined=’OldUsers’</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>List user not in ‘other’ category but having an unix login :</p></li>
+</ul>
+</div></blockquote>
+<p>hpcManager.py list user –attribute unix_login unix_category –filter unix_category=’^(?!other).*$’ –filter ‘unix_login=^.+$’</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>List research user in current session needed to be created and generate missing attributes modules :</p></li>
+</ul>
+</div></blockquote>
+<p>hpcManager.py list –generate-missing user –attribute unix_login unix_clearpassword gramc_login gramc_pi –filter ‘unix_login=^$’ –filter ‘gramc_category=^recherche|test$’ –filter ‘gramc_session=[CURRENT]’ –filter ‘gramc_psession=[CURRENT]’</p>
+</section>
+</section>
+</section>
+<section id="create">
+<h5>create<a class="headerlink" href="#create" title="Permalink to this heading"></a></h5>
+<p>Create group, password and shadow file for new users,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="n">create</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">{</span><span class="n">group</span><span class="p">,</span><span class="n">user</span><span class="p">}</span> <span class="o">...</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat2">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat2" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>objects</kbd></dt>
+<dd><p>Possible choices: group, user</p>
+</dd>
+</dl>
+</section>
+<section id="Named Arguments_repeat4">
+<h6>Named Arguments<a class="headerlink" href="#Named Arguments_repeat4" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+</dl>
+</section>
+<section id="Sub-commands_repeat2">
+<h6>Sub-commands<a class="headerlink" href="#Sub-commands_repeat2" title="Permalink to this heading"></a></h6>
+<section id="group_repeat1">
+<h6 aria-level="7">group<a class="headerlink" href="#group_repeat1" title="Permalink to this heading"></a></h6>
+<p>Create hpc groups</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="n">create</span> <span class="n">group</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">csv</span>
+                           <span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+                           <span class="p">[</span><span class="o">--</span><span class="n">doit</span> <span class="n">YesIReallyWantToUseThisBetaFeatureCreate</span><span class="p">]</span>
+                           <span class="p">[</span><span class="o">--</span><span class="k">continue</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">failure</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat5">
+<h6 aria-level="8">Named Arguments<a class="headerlink" href="#Named Arguments_repeat5" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--from-csv</kbd></dt>
+<dd><p>Create group from csv file</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really create group from csv file (YesIReallyWantToUseThisBetaFeatureCreate)</p>
+</dd>
+<dt><kbd>--continue-on-failure</kbd></dt>
+<dd><p>Continue create group even if an error occurs.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="user_repeat1">
+<h6 aria-level="7">user<a class="headerlink" href="#user_repeat1" title="Permalink to this heading"></a></h6>
+<p>Create hpc users</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="n">create</span> <span class="n">user</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">csv</span>
+                          <span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+                          <span class="p">[</span><span class="o">--</span><span class="n">doit</span> <span class="n">YesIReallyWantToUseThisBetaFeatureCreate</span><span class="p">]</span>
+                          <span class="p">[</span><span class="o">--</span><span class="k">continue</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">failure</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat6">
+<h6 aria-level="8">Named Arguments<a class="headerlink" href="#Named Arguments_repeat6" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--from-csv</kbd></dt>
+<dd><p>Create user from csv file</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really create user from csv file (YesIReallyWantToUseThisBetaFeatureCreate)</p>
+</dd>
+<dt><kbd>--continue-on-failure</kbd></dt>
+<dd><p>Continue create user even if an error occurs.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+<section id="delete">
+<h5>delete<a class="headerlink" href="#delete" title="Permalink to this heading"></a></h5>
+<p>Delete group,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="n">delete</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">{</span><span class="n">group</span><span class="p">,</span><span class="n">user</span><span class="p">}</span> <span class="o">...</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat3">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat3" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>objects</kbd></dt>
+<dd><p>Possible choices: group, user</p>
+</dd>
+</dl>
+</section>
+<section id="Named Arguments_repeat7">
+<h6>Named Arguments<a class="headerlink" href="#Named Arguments_repeat7" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+</dl>
+</section>
+<section id="Sub-commands_repeat3">
+<h6>Sub-commands<a class="headerlink" href="#Sub-commands_repeat3" title="Permalink to this heading"></a></h6>
+<section id="group_repeat2">
+<h6 aria-level="7">group<a class="headerlink" href="#group_repeat2" title="Permalink to this heading"></a></h6>
+<p>Delete hpc groups</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="n">delete</span> <span class="n">group</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">csv</span>
+                           <span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+                           <span class="p">[</span><span class="o">--</span><span class="n">doit</span> <span class="n">YesIReallyWantToUseThisBetaFeatureDelete</span><span class="p">]</span>
+                           <span class="p">[</span><span class="o">--</span><span class="k">continue</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">failure</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat8">
+<h6 aria-level="8">Named Arguments<a class="headerlink" href="#Named Arguments_repeat8" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--from-csv</kbd></dt>
+<dd><p>Delete group from csv file</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really delete group from csv file (YesIReallyWantToUseThisBetaFeatureDelete)</p>
+</dd>
+<dt><kbd>--continue-on-failure</kbd></dt>
+<dd><p>Continue delete group even if an error occurs.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="user_repeat2">
+<h6 aria-level="7">user<a class="headerlink" href="#user_repeat2" title="Permalink to this heading"></a></h6>
+<p>Delete hpc users</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="n">delete</span> <span class="n">user</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">csv</span>
+                          <span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">csv</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+                          <span class="p">[</span><span class="o">--</span><span class="n">doit</span> <span class="n">YesIReallyWantToUseThisBetaFeatureDelete</span><span class="p">]</span>
+                          <span class="p">[</span><span class="o">--</span><span class="k">continue</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">failure</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat9">
+<h6 aria-level="8">Named Arguments<a class="headerlink" href="#Named Arguments_repeat9" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--from-csv</kbd></dt>
+<dd><p>Delete user from csv file</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really delete user from csv file (YesIReallyWantToUseThisBetaFeatureDelete)</p>
+</dd>
+<dt><kbd>--continue-on-failure</kbd></dt>
+<dd><p>Continue delete user even if an error occurs.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+<section id="update">
+<h5>update<a class="headerlink" href="#update" title="Permalink to this heading"></a></h5>
+<p>Update project quota,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcManager</span><span class="o">.</span><span class="n">py</span> <span class="n">update</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat10">
+<h6>Named Arguments<a class="headerlink" href="#Named Arguments_repeat10" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+</section>
+<section id="hpcmesomanager">
+<h2>HpcMesoManager<a class="headerlink" href="#hpcmesomanager" title="Permalink to this heading"></a></h2>
+<p>This tools can be use to retreive pending attributions and networks to be allowed on cluster from GRAMC
+Meso API.</p>
+<p><p>Hpc Gramc Meso Manager</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">hpcMesoManager</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span>
+                         <span class="p">{</span><span class="nb">list</span><span class="o">-</span><span class="n">pending</span><span class="o">-</span><span class="n">attributions</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">ips</span><span class="p">}</span> <span class="o">...</span>
+</pre></div>
+</div>
+<section id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this heading"></a></h3>
+<dl class="option-list">
+<dt><kbd>actions</kbd></dt>
+<dd><p>Possible choices: list-pending-attributions, list-ips</p>
+</dd>
+</dl>
+</section>
+<section id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this heading"></a></h3>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+</dl>
+</section>
+<section id="Sub-commands">
+<h3>Sub-commands<a class="headerlink" href="#Sub-commands" title="Permalink to this heading"></a></h3>
+<section id="list-pending-attributions">
+<h4>list-pending-attributions<a class="headerlink" href="#list-pending-attributions" title="Permalink to this heading"></a></h4>
+<p>List pending attributions for Gramc Meso in csv format</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcMesoManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span><span class="o">-</span><span class="n">pending</span><span class="o">-</span><span class="n">attributions</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">details</span><span class="p">]</span>
+                                            <span class="p">[</span><span class="o">--</span><span class="nb">all</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">header</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat1">
+<h5>Named Arguments<a class="headerlink" href="#Named Arguments_repeat1" title="Permalink to this heading"></a></h5>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--details</kbd></dt>
+<dd><p>Display all fields</p>
+</dd>
+<dt><kbd>--all</kbd></dt>
+<dd><p>Display all attributions not only those for local resource</p>
+</dd>
+<dt><kbd>--no-header</kbd></dt>
+<dd><p>Do not display fields headers</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="list-ips">
+<h4>list-ips<a class="headerlink" href="#list-ips" title="Permalink to this heading"></a></h4>
+<p>List allowed IPs in CIDR format one by line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcMesoManager</span><span class="o">.</span><span class="n">py</span> <span class="nb">list</span><span class="o">-</span><span class="n">ips</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">details</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat2">
+<h5>Named Arguments<a class="headerlink" href="#Named Arguments_repeat2" title="Permalink to this heading"></a></h5>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--details</kbd></dt>
+<dd><p>Display laboratory name and all networks separated by semicolon</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+<section id="hpcpasswordmanager">
+<h2>HpcPasswordManager<a class="headerlink" href="#hpcpasswordmanager" title="Permalink to this heading"></a></h2>
+<p>This tools can be use to lock and unlock users accross all modules on the cluster. For example,
+if unix and slurm modules are properly configured, it locks unix account and prevent user from
+lauching jobs. Used with –killall option it can also ends all activity of the user (process and
+jobs in this case) on logins nodes.</p>
+<p><p>Hpc temporary password manager</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">hpcPasswordManager</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">doit</span><span class="p">]</span>
+                             <span class="p">{</span><span class="n">lock</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">expire</span><span class="p">,</span><span class="n">lock</span><span class="p">,</span><span class="n">renew</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">unlock</span><span class="p">,</span><span class="n">unlock</span><span class="p">}</span>
+                             <span class="o">...</span>
+</pre></div>
+</div>
+<section id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this heading"></a></h3>
+<dl class="option-list">
+<dt><kbd>actions</kbd></dt>
+<dd><p>Possible choices: lock-and-expire, lock, renew-and-unlock, unlock</p>
+</dd>
+</dl>
+</section>
+<section id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this heading"></a></h3>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really do actions else just print what should be done</p>
+</dd>
+</dl>
+</section>
+<section id="Sub-commands">
+<h3>Sub-commands<a class="headerlink" href="#Sub-commands" title="Permalink to this heading"></a></h3>
+<section id="lock-and-expire">
+<h4>lock-and-expire<a class="headerlink" href="#lock-and-expire" title="Permalink to this heading"></a></h4>
+<p>Lock (automatic from gramc API) unix user accounts with expired temporary password in GRAMC and also clear GRAMC temporary passwords that have been changed on cluster. A warning is prompted for locked users with active process or jobs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcPasswordManager</span><span class="o">.</span><span class="n">py</span> <span class="n">lock</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">expire</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">doit</span><span class="p">]</span>
+                                      <span class="p">[</span><span class="o">--</span><span class="n">details</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat1">
+<h5>Named Arguments<a class="headerlink" href="#Named Arguments_repeat1" title="Permalink to this heading"></a></h5>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really do actions else just print what should be done</p>
+</dd>
+<dt><kbd>--details</kbd></dt>
+<dd><p>Display full user activity instead of a summary</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="lock">
+<h4>lock<a class="headerlink" href="#lock" title="Permalink to this heading"></a></h4>
+<p>Lock (manual) unix user account and clear GRAMC temporary password for this account. A warning is prompted for locked users with active process or jobs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcPasswordManager</span><span class="o">.</span><span class="n">py</span> <span class="n">lock</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">doit</span><span class="p">]</span> <span class="o">--</span><span class="n">login</span> <span class="n">LOGIN</span>
+                           <span class="p">[</span><span class="o">--</span><span class="n">killall</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">details</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">local</span><span class="o">-</span><span class="n">user</span><span class="p">]</span>
+                           <span class="p">[</span><span class="o">--</span><span class="n">slurm</span><span class="o">-</span><span class="n">user</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat2">
+<h5>Named Arguments<a class="headerlink" href="#Named Arguments_repeat2" title="Permalink to this heading"></a></h5>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really do actions else just print what should be done</p>
+</dd>
+<dt><kbd>--login</kbd></dt>
+<dd><p>User login to lock</p>
+</dd>
+<dt><kbd>--killall</kbd></dt>
+<dd><p>Kill all process and job for this user after account is locked</p>
+</dd>
+<dt><kbd>--details</kbd></dt>
+<dd><p>Display full user activity instead of a summary</p>
+</dd>
+<dt><kbd>--local-user</kbd></dt>
+<dd><p>Local cluster user, no check on gramc</p>
+</dd>
+<dt><kbd>--slurm-user</kbd></dt>
+<dd><p>Slurm cluster user only, no action on other modules</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="renew-and-unlock">
+<h4>renew-and-unlock<a class="headerlink" href="#renew-and-unlock" title="Permalink to this heading"></a></h4>
+<p>Unlock unix account and change user password with a generated password, cleartext password can be displayed with debug ‘DEBUG’ flag or with querying GRAMC API.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcPasswordManager</span><span class="o">.</span><span class="n">py</span> <span class="n">renew</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">unlock</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">doit</span><span class="p">]</span> <span class="o">--</span><span class="n">login</span>
+                                       <span class="n">LOGIN</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat3">
+<h5>Named Arguments<a class="headerlink" href="#Named Arguments_repeat3" title="Permalink to this heading"></a></h5>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really do actions else just print what should be done</p>
+</dd>
+<dt><kbd>--login</kbd></dt>
+<dd><p>User login to set a new generated password to</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="unlock">
+<h4>unlock<a class="headerlink" href="#unlock" title="Permalink to this heading"></a></h4>
+<p>Unlock (manual) unix user account. No new password is set, only unlock unix and slurm users.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hpcPasswordManager</span><span class="o">.</span><span class="n">py</span> <span class="n">unlock</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">doit</span><span class="p">]</span> <span class="o">--</span><span class="n">login</span> <span class="n">LOGIN</span>
+                             <span class="p">[</span><span class="o">--</span><span class="n">local</span><span class="o">-</span><span class="n">user</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">slurm</span><span class="o">-</span><span class="n">user</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="Named Arguments_repeat4">
+<h5>Named Arguments<a class="headerlink" href="#Named Arguments_repeat4" title="Permalink to this heading"></a></h5>
+<dl class="option-list">
+<dt><kbd>--debug</kbd></dt>
+<dd><p>Possible choices: critical, CRITICAL, info, INFO, warning, WARNING, error, ERROR, debug, DEBUG, trace, TRACE</p>
+<p>Set debug level (CRITICAL, INFO, WARNING, ERROR, DEBUG, TRACE)</p>
+</dd>
+<dt><kbd>--doit</kbd></dt>
+<dd><p>Really do actions else just print what should be done</p>
+</dd>
+<dt><kbd>--login</kbd></dt>
+<dd><p>User login to unlock</p>
+</dd>
+<dt><kbd>--local-user</kbd></dt>
+<dd><p>Local cluster user, no check on gramc</p>
+</dd>
+<dt><kbd>--slurm-user</kbd></dt>
+<dd><p>Slurm cluster user only, no action on other modules</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to hpcManager’s documentation !" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="smmtools.html" class="btn btn-neutral float-right" title="Standalone Module Managers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Christophe Marteau.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
